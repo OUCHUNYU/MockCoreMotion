@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500E79101E75CD5600857C92 /* MockCMAccelerometerDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E790F1E75CD5600857C92 /* MockCMAccelerometerDataTests.swift */; };
+		500E79121E75D05200857C92 /* MockCMAltimeterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E79111E75D05200857C92 /* MockCMAltimeterTests.swift */; };
 		9DDC82D21E74CBA8008EF52C /* MockCoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DDC82C81E74CBA8008EF52C /* MockCoreMotion.framework */; };
 		9DDC82D71E74CBA8008EF52C /* MockCoreMotionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82D61E74CBA8008EF52C /* MockCoreMotionTests.swift */; };
 		9DDC82D91E74CBA8008EF52C /* MockCoreMotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DDC82CB1E74CBA8008EF52C /* MockCoreMotion.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		500E790F1E75CD5600857C92 /* MockCMAccelerometerDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMAccelerometerDataTests.swift; sourceTree = "<group>"; };
+		500E79111E75D05200857C92 /* MockCMAltimeterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMAltimeterTests.swift; sourceTree = "<group>"; };
 		9DDC82C81E74CBA8008EF52C /* MockCoreMotion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MockCoreMotion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DDC82CB1E74CBA8008EF52C /* MockCoreMotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockCoreMotion.h; sourceTree = "<group>"; };
 		9DDC82CC1E74CBA8008EF52C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				9DDC82D61E74CBA8008EF52C /* MockCoreMotionTests.swift */,
+				500E790F1E75CD5600857C92 /* MockCMAccelerometerDataTests.swift */,
+				500E79111E75D05200857C92 /* MockCMAltimeterTests.swift */,
 				9DDC82D81E74CBA8008EF52C /* Info.plist */,
 			);
 			path = MockCoreMotionTests;
@@ -303,6 +309,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DDC82D71E74CBA8008EF52C /* MockCoreMotionTests.swift in Sources */,
+				500E79101E75CD5600857C92 /* MockCMAccelerometerDataTests.swift in Sources */,
+				500E79121E75D05200857C92 /* MockCMAltimeterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

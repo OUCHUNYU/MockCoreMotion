@@ -12,6 +12,22 @@
 		9DDC82D91E74CBA8008EF52C /* MockCoreMotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DDC82CB1E74CBA8008EF52C /* MockCoreMotion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9DDC82E41E74CC8C008EF52C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DDC82E31E74CC8C008EF52C /* CoreMotion.framework */; };
 		9DDC82E61E74CD0D008EF52C /* MockCMAccelerometerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82E51E74CD0D008EF52C /* MockCMAccelerometerData.swift */; };
+		9DDC82E81E752D76008EF52C /* MockCMAltimeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82E71E752D76008EF52C /* MockCMAltimeter.swift */; };
+		9DDC82EA1E752D95008EF52C /* MockCMAltitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82E91E752D95008EF52C /* MockCMAltitudeData.swift */; };
+		9DDC82EC1E752DA5008EF52C /* MockCMAttitude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82EB1E752DA5008EF52C /* MockCMAttitude.swift */; };
+		9DDC82EE1E752DB6008EF52C /* MockCMDeviceMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82ED1E752DB6008EF52C /* MockCMDeviceMotion.swift */; };
+		9DDC82F01E752DC1008EF52C /* MockCMGyroData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82EF1E752DC1008EF52C /* MockCMGyroData.swift */; };
+		9DDC82F21E752DCB008EF52C /* MockCMLogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82F11E752DCB008EF52C /* MockCMLogItem.swift */; };
+		9DDC82F41E752DD6008EF52C /* MockCMMagnetometerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82F31E752DD6008EF52C /* MockCMMagnetometerData.swift */; };
+		9DDC82F61E752DDF008EF52C /* MockCMMotionActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82F51E752DDF008EF52C /* MockCMMotionActivity.swift */; };
+		9DDC82F81E752DFE008EF52C /* MockCMMotionActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82F71E752DFE008EF52C /* MockCMMotionActivityManager.swift */; };
+		9DDC82FA1E752E07008EF52C /* MockCMMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82F91E752E07008EF52C /* MockCMMotionManager.swift */; };
+		9DDC82FC1E752E11008EF52C /* MockCMPedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82FB1E752E11008EF52C /* MockCMPedometer.swift */; };
+		9DDC82FE1E752E1E008EF52C /* MockCMPedometerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82FD1E752E1E008EF52C /* MockCMPedometerData.swift */; };
+		9DDC83001E752E5A008EF52C /* MockCMPedometerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82FF1E752E5A008EF52C /* MockCMPedometerEvent.swift */; };
+		9DDC83021E752E63008EF52C /* MockCMRecordedAccelerometerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC83011E752E63008EF52C /* MockCMRecordedAccelerometerData.swift */; };
+		9DDC83041E752E6E008EF52C /* MockCMSensorDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC83031E752E6E008EF52C /* MockCMSensorDataList.swift */; };
+		9DDC83061E752E7A008EF52C /* MockCMSensorRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC83051E752E7A008EF52C /* MockCMSensorRecorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +49,22 @@
 		9DDC82D81E74CBA8008EF52C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DDC82E31E74CC8C008EF52C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		9DDC82E51E74CD0D008EF52C /* MockCMAccelerometerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMAccelerometerData.swift; sourceTree = "<group>"; };
+		9DDC82E71E752D76008EF52C /* MockCMAltimeter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMAltimeter.swift; sourceTree = "<group>"; };
+		9DDC82E91E752D95008EF52C /* MockCMAltitudeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMAltitudeData.swift; sourceTree = "<group>"; };
+		9DDC82EB1E752DA5008EF52C /* MockCMAttitude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMAttitude.swift; sourceTree = "<group>"; };
+		9DDC82ED1E752DB6008EF52C /* MockCMDeviceMotion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMDeviceMotion.swift; sourceTree = "<group>"; };
+		9DDC82EF1E752DC1008EF52C /* MockCMGyroData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMGyroData.swift; sourceTree = "<group>"; };
+		9DDC82F11E752DCB008EF52C /* MockCMLogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMLogItem.swift; sourceTree = "<group>"; };
+		9DDC82F31E752DD6008EF52C /* MockCMMagnetometerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMMagnetometerData.swift; sourceTree = "<group>"; };
+		9DDC82F51E752DDF008EF52C /* MockCMMotionActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMMotionActivity.swift; sourceTree = "<group>"; };
+		9DDC82F71E752DFE008EF52C /* MockCMMotionActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMMotionActivityManager.swift; sourceTree = "<group>"; };
+		9DDC82F91E752E07008EF52C /* MockCMMotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMMotionManager.swift; sourceTree = "<group>"; };
+		9DDC82FB1E752E11008EF52C /* MockCMPedometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMPedometer.swift; sourceTree = "<group>"; };
+		9DDC82FD1E752E1E008EF52C /* MockCMPedometerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMPedometerData.swift; sourceTree = "<group>"; };
+		9DDC82FF1E752E5A008EF52C /* MockCMPedometerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMPedometerEvent.swift; sourceTree = "<group>"; };
+		9DDC83011E752E63008EF52C /* MockCMRecordedAccelerometerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMRecordedAccelerometerData.swift; sourceTree = "<group>"; };
+		9DDC83031E752E6E008EF52C /* MockCMSensorDataList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMSensorDataList.swift; sourceTree = "<group>"; };
+		9DDC83051E752E7A008EF52C /* MockCMSensorRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMSensorRecorder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,9 +109,25 @@
 		9DDC82CA1E74CBA8008EF52C /* MockCoreMotion */ = {
 			isa = PBXGroup;
 			children = (
-				9DDC82CB1E74CBA8008EF52C /* MockCoreMotion.h */,
-				9DDC82CC1E74CBA8008EF52C /* Info.plist */,
+				9DDC83071E752EF8008EF52C /* Injectables */,
+				9DDC83081E752F09008EF52C /* Support Files */,
 				9DDC82E51E74CD0D008EF52C /* MockCMAccelerometerData.swift */,
+				9DDC82E71E752D76008EF52C /* MockCMAltimeter.swift */,
+				9DDC82E91E752D95008EF52C /* MockCMAltitudeData.swift */,
+				9DDC82EB1E752DA5008EF52C /* MockCMAttitude.swift */,
+				9DDC82ED1E752DB6008EF52C /* MockCMDeviceMotion.swift */,
+				9DDC82EF1E752DC1008EF52C /* MockCMGyroData.swift */,
+				9DDC82F11E752DCB008EF52C /* MockCMLogItem.swift */,
+				9DDC82F31E752DD6008EF52C /* MockCMMagnetometerData.swift */,
+				9DDC82F51E752DDF008EF52C /* MockCMMotionActivity.swift */,
+				9DDC82F71E752DFE008EF52C /* MockCMMotionActivityManager.swift */,
+				9DDC82F91E752E07008EF52C /* MockCMMotionManager.swift */,
+				9DDC82FB1E752E11008EF52C /* MockCMPedometer.swift */,
+				9DDC82FD1E752E1E008EF52C /* MockCMPedometerData.swift */,
+				9DDC82FF1E752E5A008EF52C /* MockCMPedometerEvent.swift */,
+				9DDC83011E752E63008EF52C /* MockCMRecordedAccelerometerData.swift */,
+				9DDC83031E752E6E008EF52C /* MockCMSensorDataList.swift */,
+				9DDC83051E752E7A008EF52C /* MockCMSensorRecorder.swift */,
 			);
 			path = MockCoreMotion;
 			sourceTree = "<group>";
@@ -99,6 +147,22 @@
 				9DDC82E31E74CC8C008EF52C /* CoreMotion.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9DDC83071E752EF8008EF52C /* Injectables */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Injectables;
+			sourceTree = "<group>";
+		};
+		9DDC83081E752F09008EF52C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9DDC82CB1E74CBA8008EF52C /* MockCoreMotion.h */,
+				9DDC82CC1E74CBA8008EF52C /* Info.plist */,
+			);
+			name = "Support Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +279,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DDC82E61E74CD0D008EF52C /* MockCMAccelerometerData.swift in Sources */,
+				9DDC83021E752E63008EF52C /* MockCMRecordedAccelerometerData.swift in Sources */,
+				9DDC82EC1E752DA5008EF52C /* MockCMAttitude.swift in Sources */,
+				9DDC82EE1E752DB6008EF52C /* MockCMDeviceMotion.swift in Sources */,
+				9DDC82FC1E752E11008EF52C /* MockCMPedometer.swift in Sources */,
+				9DDC82F41E752DD6008EF52C /* MockCMMagnetometerData.swift in Sources */,
+				9DDC82FA1E752E07008EF52C /* MockCMMotionManager.swift in Sources */,
+				9DDC82F81E752DFE008EF52C /* MockCMMotionActivityManager.swift in Sources */,
+				9DDC82F61E752DDF008EF52C /* MockCMMotionActivity.swift in Sources */,
+				9DDC83001E752E5A008EF52C /* MockCMPedometerEvent.swift in Sources */,
+				9DDC83061E752E7A008EF52C /* MockCMSensorRecorder.swift in Sources */,
+				9DDC82FE1E752E1E008EF52C /* MockCMPedometerData.swift in Sources */,
+				9DDC82EA1E752D95008EF52C /* MockCMAltitudeData.swift in Sources */,
+				9DDC82F01E752DC1008EF52C /* MockCMGyroData.swift in Sources */,
+				9DDC82F21E752DCB008EF52C /* MockCMLogItem.swift in Sources */,
+				9DDC82E81E752D76008EF52C /* MockCMAltimeter.swift in Sources */,
+				9DDC83041E752E6E008EF52C /* MockCMSensorDataList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

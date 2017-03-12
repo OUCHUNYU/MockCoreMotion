@@ -10,6 +10,8 @@
 		9DDC82D21E74CBA8008EF52C /* MockCoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DDC82C81E74CBA8008EF52C /* MockCoreMotion.framework */; };
 		9DDC82D71E74CBA8008EF52C /* MockCoreMotionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82D61E74CBA8008EF52C /* MockCoreMotionTests.swift */; };
 		9DDC82D91E74CBA8008EF52C /* MockCoreMotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DDC82CB1E74CBA8008EF52C /* MockCoreMotion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9DDC82E41E74CC8C008EF52C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DDC82E31E74CC8C008EF52C /* CoreMotion.framework */; };
+		9DDC82E61E74CD0D008EF52C /* MockCMAccelerometerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC82E51E74CD0D008EF52C /* MockCMAccelerometerData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		9DDC82D11E74CBA8008EF52C /* MockCoreMotionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MockCoreMotionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DDC82D61E74CBA8008EF52C /* MockCoreMotionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreMotionTests.swift; sourceTree = "<group>"; };
 		9DDC82D81E74CBA8008EF52C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DDC82E31E74CC8C008EF52C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		9DDC82E51E74CD0D008EF52C /* MockCMAccelerometerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMAccelerometerData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DDC82E41E74CC8C008EF52C /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +61,7 @@
 				9DDC82CA1E74CBA8008EF52C /* MockCoreMotion */,
 				9DDC82D51E74CBA8008EF52C /* MockCoreMotionTests */,
 				9DDC82C91E74CBA8008EF52C /* Products */,
+				9DDC82E21E74CC8C008EF52C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +79,7 @@
 			children = (
 				9DDC82CB1E74CBA8008EF52C /* MockCoreMotion.h */,
 				9DDC82CC1E74CBA8008EF52C /* Info.plist */,
+				9DDC82E51E74CD0D008EF52C /* MockCMAccelerometerData.swift */,
 			);
 			path = MockCoreMotion;
 			sourceTree = "<group>";
@@ -84,6 +91,14 @@
 				9DDC82D81E74CBA8008EF52C /* Info.plist */,
 			);
 			path = MockCoreMotionTests;
+			sourceTree = "<group>";
+		};
+		9DDC82E21E74CC8C008EF52C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9DDC82E31E74CC8C008EF52C /* CoreMotion.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +164,7 @@
 					9DDC82C71E74CBA8008EF52C = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = E33XT6TNN9;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					9DDC82D01E74CBA8008EF52C = {
@@ -198,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DDC82E61E74CD0D008EF52C /* MockCMAccelerometerData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +339,7 @@
 		9DDC82DD1E74CBA8008EF52C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = E33XT6TNN9;
@@ -334,6 +352,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ouchunyu.MockCoreMotion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -341,6 +360,7 @@
 		9DDC82DE1E74CBA8008EF52C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = E33XT6TNN9;
@@ -360,6 +380,7 @@
 		9DDC82E01E74CBA8008EF52C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = E33XT6TNN9;
 				INFOPLIST_FILE = MockCoreMotionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -372,6 +393,7 @@
 		9DDC82E11E74CBA8008EF52C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = E33XT6TNN9;
 				INFOPLIST_FILE = MockCoreMotionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -400,6 +422,7 @@
 				9DDC82DE1E74CBA8008EF52C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9DDC82DF1E74CBA8008EF52C /* Build configuration list for PBXNativeTarget "MockCoreMotionTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +431,7 @@
 				9DDC82E11E74CBA8008EF52C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -31,6 +31,7 @@
 		9DDC83041E752E6E008EF52C /* MockCMSensorDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC83031E752E6E008EF52C /* MockCMSensorDataList.swift */; };
 		9DDC83061E752E7A008EF52C /* MockCMSensorRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC83051E752E7A008EF52C /* MockCMSensorRecorder.swift */; };
 		9DDC830A1E7663F8008EF52C /* MockCMAltitudeDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC83091E7663F8008EF52C /* MockCMAltitudeDataTests.swift */; };
+		9DDC830C1E76704E008EF52C /* MockCMAttitudeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC830B1E76704E008EF52C /* MockCMAttitudeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		9DDC83031E752E6E008EF52C /* MockCMSensorDataList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMSensorDataList.swift; sourceTree = "<group>"; };
 		9DDC83051E752E7A008EF52C /* MockCMSensorRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMSensorRecorder.swift; sourceTree = "<group>"; };
 		9DDC83091E7663F8008EF52C /* MockCMAltitudeDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMAltitudeDataTests.swift; sourceTree = "<group>"; };
+		9DDC830B1E76704E008EF52C /* MockCMAttitudeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMAttitudeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				500E790F1E75CD5600857C92 /* MockCMAccelerometerDataTests.swift */,
 				500E79111E75D05200857C92 /* MockCMAltimeterTests.swift */,
 				9DDC83091E7663F8008EF52C /* MockCMAltitudeDataTests.swift */,
+				9DDC830B1E76704E008EF52C /* MockCMAttitudeTests.swift */,
 				9DDC82D81E74CBA8008EF52C /* Info.plist */,
 			);
 			path = MockCoreMotionTests;
@@ -314,6 +317,7 @@
 				9DDC82D71E74CBA8008EF52C /* MockCoreMotionTests.swift in Sources */,
 				500E79101E75CD5600857C92 /* MockCMAccelerometerDataTests.swift in Sources */,
 				500E79121E75D05200857C92 /* MockCMAltimeterTests.swift in Sources */,
+				9DDC830C1E76704E008EF52C /* MockCMAttitudeTests.swift in Sources */,
 				9DDC830A1E7663F8008EF52C /* MockCMAltitudeDataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

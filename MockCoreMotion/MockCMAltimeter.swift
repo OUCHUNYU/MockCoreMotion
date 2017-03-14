@@ -9,7 +9,7 @@
 import Foundation
 import CoreMotion
 
-class MockCMAltimeter: CMAltimeter {
+open class MockCMAltimeter: CMAltimeter {
 
     open override static func isRelativeAltitudeAvailable() -> Bool {
         return _isRelativeAltitudeAvailable

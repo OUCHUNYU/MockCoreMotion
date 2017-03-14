@@ -9,7 +9,7 @@
 import Foundation
 import CoreMotion
 
-class MockCMAttitude: CMAttitude {
+open class MockCMAttitude: CMAttitude {
     private var _roll: Double = 0
     private var _yaw: Double = 0
     private var _pitch: Double = 0

@@ -9,7 +9,7 @@
 import Foundation
 import CoreMotion
 
-class MockCMAltitudeData: CMAltitudeData {
+open class MockCMAltitudeData: CMAltitudeData {
     
     // The change in altitude (in meters) since the last reported event.
     // We set default to 0 meannig we are at 0 meter
@@ -21,7 +21,7 @@ class MockCMAltitudeData: CMAltitudeData {
     
     private var _timestamp: TimeInterval = Date().timeIntervalSinceReferenceDate
     
-    override var relativeAltitude: NSNumber {
+    open override var relativeAltitude: NSNumber {
         get {
             return _relativeAltitude
         }
@@ -30,7 +30,7 @@ class MockCMAltitudeData: CMAltitudeData {
         }
     }
     
-    override var pressure: NSNumber {
+    open override var pressure: NSNumber {
         get {
             return _pressure
         }
@@ -39,7 +39,7 @@ class MockCMAltitudeData: CMAltitudeData {
         }
     }
     
-    override open var timestamp: TimeInterval {
+    open override var timestamp: TimeInterval {
         get {
             return _timestamp
         }

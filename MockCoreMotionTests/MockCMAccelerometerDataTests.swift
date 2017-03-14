@@ -16,7 +16,6 @@ class MockCMAccelerometerDataTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        testMockCMAccelerometerData = MockCMAccelerometerData()
     }
     
     override func tearDown() {
@@ -26,7 +25,6 @@ class MockCMAccelerometerDataTests: XCTestCase {
     }
     
     func testAcceleration() {
-        XCTAssertNotNil(testMockCMAccelerometerData?.acceleration, "MockCMAccelerometerData instance should have acceleration data by default")
         var testCMAcceleration = CMAcceleration()
         let testX = 0.123
         let testY = 0.456
@@ -34,7 +32,8 @@ class MockCMAccelerometerDataTests: XCTestCase {
         testCMAcceleration.x = testX
         testCMAcceleration.y = testY
         testCMAcceleration.z = testZ
-        testMockCMAccelerometerData?.acceleration = testCMAcceleration
+        testMockCMAccelerometerData = MockCMAccelerometerData(acceleration: testCMAcceleration)
+        XCTAssertNotNil(testMockCMAccelerometerData?.acceleration, "MockCMAccelerometerData instance should have acceleration data")
         XCTAssertEqual(testMockCMAccelerometerData?.acceleration.x, testX)
         XCTAssertEqual(testMockCMAccelerometerData?.acceleration.y, testY)
         XCTAssertEqual(testMockCMAccelerometerData?.acceleration.z, testZ)

@@ -10,12 +10,12 @@ import Foundation
 import CoreMotion
 
 class MockCMGyroData: CMGyroData {
-    private var _rotationRate: CMRotationRate = CMRotationRate(x: 0.0, y: 0.0, z: 0.0)
+    private var _rotationRate: CMRotationRate?
     private var _timestamp: TimeInterval = Date().timeIntervalSinceReferenceDate
     
     override var rotationRate: CMRotationRate {
         get {
-            return _rotationRate
+            return _rotationRate ?? super.rotationRate
         }
         set {
             _rotationRate = newValue
@@ -28,5 +28,24 @@ class MockCMGyroData: CMGyroData {
         set {
             _timestamp = newValue
         }
+    }
+    
+    public init(rotationRate: CMRotationRate) {
+        _rotationRate = rotationRate
+        super.init()
+    }
+    
+    public required init?(coder: NSCoder) {
+        if coder.containsValue(forKey: MockCMGyroData.rotationRateKey),
+            let rotationRateValue = coder.decodeObject(forKey: MockCMGyroData.rotationRateKey) as? CMRotationRate {
+            _rotationRate = rotationRateValue
+        }
+        super.init(coder: coder)
+    }
+    
+    private static let rotationRateKey = "_rotationRate"
+    
+    open override func encode(with coder: NSCoder) {
+        coder.encode(rotationRate, forKey: MockCMGyroData.rotationRateKey)
     }
 }

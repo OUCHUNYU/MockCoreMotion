@@ -1,0 +1,8 @@
+language: swift
+osx_image: xcode8.1
+xcode_project: MockCoreMotion.xcodeproj
+xcode_scheme: MockCoreMotionTests
+xcode_sdk: iphonesimulator10.1
+
+script:
+  - xcodebuild clean test -project MockCoreMotion.xcodeproj -scheme MockCoreMotion -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.1' | xcpretty -s

@@ -9,11 +9,11 @@
 import Foundation
 import CoreMotion
 
-class MockCMGyroData: CMGyroData {
+open class MockCMGyroData: CMGyroData {
     private var _rotationRate: CMRotationRate?
     private var _timestamp: TimeInterval = Date().timeIntervalSinceReferenceDate
     
-    override var rotationRate: CMRotationRate {
+    open override var rotationRate: CMRotationRate {
         get {
             return _rotationRate ?? super.rotationRate
         }
@@ -21,7 +21,7 @@ class MockCMGyroData: CMGyroData {
             _rotationRate = newValue
         }
     }
-    override var timestamp: TimeInterval {
+    open override var timestamp: TimeInterval {
         get {
             return _timestamp
         }

@@ -9,12 +9,12 @@
 import Foundation
 import CoreMotion
 
-class MockCMMagnetometerData: CMMagnetometerData {
+open class MockCMMagnetometerData: CMMagnetometerData {
     
     private var _magneticField: CMMagneticField?
     private var _timestamp: TimeInterval = Date().timeIntervalSinceReferenceDate
     
-    override var magneticField: CMMagneticField {
+    open override var magneticField: CMMagneticField {
         get {
             return _magneticField ?? super.magneticField
         }
@@ -23,7 +23,7 @@ class MockCMMagnetometerData: CMMagnetometerData {
         }
     }
     
-    override var timestamp: TimeInterval {
+    open override var timestamp: TimeInterval {
         get {
             return _timestamp
         }

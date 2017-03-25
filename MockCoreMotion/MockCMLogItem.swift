@@ -9,7 +9,7 @@
 import Foundation
 import CoreMotion
 
-class MockCMLogItem: CMLogItem {
+open class MockCMLogItem: CMLogItem {
     open var _timestamp: TimeInterval?
     
     public init(timestamp: TimeInterval) {

@@ -28,9 +28,11 @@ class MockCMMotionActivityManagerTests: XCTestCase {
     }
     
     func testIsActivityAvailable() {
+        XCTAssertFalse(MockCMMotionActivityManager.isActivityAvailableCalled)
         XCTAssertFalse(MockCMMotionActivityManager.isActivityAvailable())
         MockCMMotionActivityManager._isActivityAvailable = true
         XCTAssertTrue(MockCMMotionActivityManager.isActivityAvailable())
+        XCTAssertTrue(MockCMMotionActivityManager.isActivityAvailableCalled)
     }
     
     // TODO: testing error case

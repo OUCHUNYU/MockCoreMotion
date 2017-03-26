@@ -38,6 +38,7 @@
 		9DDC83061E752E7A008EF52C /* MockCMSensorRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC83051E752E7A008EF52C /* MockCMSensorRecorder.swift */; };
 		9DDC830A1E7663F8008EF52C /* MockCMAltitudeDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC83091E7663F8008EF52C /* MockCMAltitudeDataTests.swift */; };
 		9DDC830C1E76704E008EF52C /* MockCMAttitudeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC830B1E76704E008EF52C /* MockCMAttitudeTests.swift */; };
+		9DE81FA71E884C9900E9089E /* MockCMPedometerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE81FA61E884C9900E9089E /* MockCMPedometerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		9DDC83051E752E7A008EF52C /* MockCMSensorRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMSensorRecorder.swift; sourceTree = "<group>"; };
 		9DDC83091E7663F8008EF52C /* MockCMAltitudeDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMAltitudeDataTests.swift; sourceTree = "<group>"; };
 		9DDC830B1E76704E008EF52C /* MockCMAttitudeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMAttitudeTests.swift; sourceTree = "<group>"; };
+		9DE81FA61E884C9900E9089E /* MockCMPedometerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMPedometerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				9D3C2FBE1E8263BF003EA090 /* MockCMMagnetometerDataTests.swift */,
 				9DC721481E862F3E008BDAE0 /* MockCMMotionActivityTests.swift */,
 				9D6BEC071E87A00900DAFF13 /* MockCMMotionActivityManagerTests.swift */,
+				9DE81FA61E884C9900E9089E /* MockCMPedometerTests.swift */,
 				9DDC82D81E74CBA8008EF52C /* Info.plist */,
 			);
 			path = MockCoreMotionTests;
@@ -343,6 +346,7 @@
 				501516681E793311005A8217 /* MockCMGyroDataTests.swift in Sources */,
 				9DDC830C1E76704E008EF52C /* MockCMAttitudeTests.swift in Sources */,
 				9DDC830A1E7663F8008EF52C /* MockCMAltitudeDataTests.swift in Sources */,
+				9DE81FA71E884C9900E9089E /* MockCMPedometerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

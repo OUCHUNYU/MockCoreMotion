@@ -15,6 +15,7 @@ open class MockCMMotionActivityManager: CMMotionActivityManager {
     private var activityUpdateHandler: CMMotionActivityHandler?
     
     open override static func isActivityAvailable() -> Bool {
+        isActivityAvailableCalled = true
         return _isActivityAvailable ?? false
     }
     
@@ -105,10 +106,12 @@ open class MockCMMotionActivityManager: CMMotionActivityManager {
     
     /// Static Interface
     open static var _isActivityAvailable: Bool?
+    open static var isActivityAvailableCalled = false
     
     // By passing in the instance you want to flushState you flush the state of both static and instance properties
     open static func flushState(selfObject: MockCMMotionActivityManager?) {
         _isActivityAvailable = nil
+        isActivityAvailableCalled = false
         selfObject?.flushState()
     }
 }

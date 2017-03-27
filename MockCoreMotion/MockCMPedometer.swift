@@ -11,8 +11,8 @@ import CoreMotion
 
 open class MockCMPedometer: CMPedometer {
     
-    private var queryPedometerDataHandler: CMPedometerHandler?
-    private var queryPedometerDataHistoricalData: [CMPedometerData]?
+    private var startUpdatesData: [CMPedometerData]?
+    private var startUpdatesHandler: CMPedometerHandler?
     
     open override static func isStepCountingAvailable() -> Bool {
         isStepCountingAvailableCalled = true
@@ -43,56 +43,108 @@ open class MockCMPedometer: CMPedometer {
         queryPedometerDataCalled = true
         queryPedometerDataStart = start
         queryPedometerDataEnd = end
-        queryPedometerDataHandler = handler
+        guard queryPedometerDataHistoricalData != nil && queryPedometerDataHandlerError == nil else {
+            handler(nil, queryPedometerDataHandlerError)
+            return
+        }
+        for pedometerData in queryPedometerDataHistoricalData! {
+            handler(pedometerData, nil)
+        }
     }
     
     open override func startUpdates(from start: Date, withHandler handler: @escaping CMPedometerHandler) {
         startUpdatesCalled = true
+        startUpdatesStart = start
+        startUpdatesHandler = handler
+        update(with: startUpdatesData, error: startUpdatesHandlerError)
     }
     
     open override func stopUpdates() {
         stopUpdatesCalled = true
+        startUpdatesCalled = false
+        startUpdatesStart = nil
+        startUpdatesHandler = nil
+        startUpdatesData = nil
+        startUpdatesHandlerError = nil
+    }
+    
+    open func update(with: [CMPedometerData]?, error: Error? = nil, start: Date? = nil, withHandler: CMPedometerHandler? = nil) {
+        startUpdatesData = with
+        
+        guard startUpdatesCalled else {
+            return
+        }
+        
+        if error != nil {
+            startUpdatesHandlerError = error
+        }
+        
+        if start != nil {
+            startUpdatesStart = start
+        }
+
+        if withHandler != nil {
+            startUpdatesHandler = withHandler
+        }
+        
+//        guard startUpdatesStart != nil else {
+//            return
+//        }
+        
+        guard startUpdatesHandler != nil else {
+            return
+        }
+        
+        guard startUpdatesData != nil && startUpdatesHandlerError == nil else {
+            startUpdatesHandler!(nil, startUpdatesHandlerError)
+            return
+        }
+        for data in startUpdatesData! {
+            startUpdatesHandler!(data, nil)
+        }
     }
     
     open override func startEventUpdates(handler: @escaping CMPedometerEventHandler) {
         startEventUpdatesCalled = true
+        // TODO
     }
     
     open override func stopEventUpdates() {
         stopEventUpdatesCalled = true
+        // TODO
     }
     
     /// Instance Interface
-    open var queryPedometerDataCalled = false
-    open var startUpdatesCalled = false
     open var stopUpdatesCalled = false
     open var startEventUpdatesCalled = false
     open var stopEventUpdatesCalled = false
-    
+    // #queryPedometerData
+    open var queryPedometerDataCalled = false
     open var queryPedometerDataStart: Date?
     open var queryPedometerDataEnd: Date?
+    open var queryPedometerDataHistoricalData: [CMPedometerData]?
+    open var queryPedometerDataHandlerError: Error?
+    // #startUpdates
+    open var startUpdatesCalled = false
+    open var startUpdatesStart: Date?
+    
+    open var startUpdatesHandlerError: Error?
     
     open func flushState() {
-        queryPedometerDataCalled = false
-        startUpdatesCalled = false
-        stopUpdatesCalled = false
-        startEventUpdatesCalled = false
-        stopEventUpdatesCalled = false
-        
         // #queryPedometerData
+        queryPedometerDataCalled = false
         queryPedometerDataStart = nil
         queryPedometerDataEnd = nil
-        queryPedometerDataHandler = nil
         queryPedometerDataHistoricalData = nil
-        
+        queryPedometerDataHandlerError = nil
         // #startUpdates
-        
+        stopUpdates()
         // #stopUpdates
-        
+        stopUpdatesCalled = false
         // #startEventUpdates
-        
+        startEventUpdatesCalled = false
         // #stopEventUpdates
-
+        stopEventUpdatesCalled = false
     }
     
     /// Static Interface

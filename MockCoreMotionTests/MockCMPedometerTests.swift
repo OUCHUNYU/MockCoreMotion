@@ -58,4 +58,105 @@ class MockCMPedometerTests: XCTestCase {
         XCTAssertTrue(MockCMPedometer.isCadenceAvailable())
     }
     
+    // TODO: Handler error test
+    func testQueryPedometerData() {
+        var testPedometerDataCollector = [CMPedometerData]()
+        
+        XCTAssertFalse(testMockCMPedometer!.queryPedometerDataCalled)
+        XCTAssertNil(testMockCMPedometer?.queryPedometerDataStart)
+        XCTAssertNil(testMockCMPedometer?.queryPedometerDataEnd)
+        XCTAssertNil(testMockCMPedometer?.queryPedometerDataHistoricalData)
+        XCTAssertNil(testMockCMPedometer?.queryPedometerDataHandlerError)
+        
+        let testStart = Date() + (Date().timeIntervalSinceNow - 10000)
+        let testEnd = Date()
+        var testPedometerData = [CMPedometerData]()
+        for _ in 1...5 {
+            testPedometerData.append(CMPedometerData())
+        }
+        testMockCMPedometer?.queryPedometerDataHistoricalData = testPedometerData
+        
+        testMockCMPedometer?.queryPedometerData(from: testStart, to: testEnd) {
+            (data, error) in
+            XCTAssertNil(error)
+            testPedometerDataCollector.append(data!)
+        }
+        XCTAssertEqual(testPedometerDataCollector.count, testPedometerData.count)
+        XCTAssertTrue(testMockCMPedometer!.queryPedometerDataCalled)
+        XCTAssertEqual(testMockCMPedometer!.queryPedometerDataStart, testStart)
+        XCTAssertEqual(testMockCMPedometer!.queryPedometerDataEnd, testEnd)
+    }
+    
+    // TODO: Handler error test
+    func testStartUpdates() {
+        XCTAssertFalse(testMockCMPedometer!.startUpdatesCalled)
+        XCTAssertNil(testMockCMPedometer?.startUpdatesStart)
+        
+        let testStart = Date()
+        testMockCMPedometer!.startUpdates(from: testStart) {
+            [unowned self] (data, error) in
+            XCTAssertEqual(self.testMockCMPedometer!.startUpdatesStart, testStart)
+            XCTAssertTrue(self.testMockCMPedometer!.startUpdatesCalled)
+            XCTAssertNil(data)
+            XCTAssertNil(error)
+        }
+    }
+    
+    func testStopUpdates() {
+        XCTAssertFalse(testMockCMPedometer!.stopUpdatesCalled)
+        testMockCMPedometer?.stopUpdates()
+        XCTAssertTrue(testMockCMPedometer!.stopUpdatesCalled)
+    }
+    
+    // TODO: Handler error test
+    func testUpdate() {
+        var isHandlerCalled = false
+        var testPedometerDataCollector = [CMPedometerData]()
+        let testStart = Date()
+        var testPedometerData = [CMPedometerData]()
+        for _ in 1...5 {
+            testPedometerData.append(CMPedometerData())
+        }
+        func updateHandler(data: CMPedometerData?, error: Error?) {
+            guard data != nil else {
+                return
+            }
+            testPedometerDataCollector.append(data!)
+        }
+        
+        testMockCMPedometer?.update(with: nil) {
+            (data, error) in
+            isHandlerCalled = true
+        }
+        XCTAssertFalse(isHandlerCalled, "If startUpdates is never called before, then update should call the handler with update")
+        
+        testMockCMPedometer?.startUpdates(from: testStart, withHandler: updateHandler)
+        
+        XCTAssertEqual(testPedometerDataCollector.count, 0, "Calling startUpdates should not have update")
+        
+        testMockCMPedometer?.update(with: testPedometerData)
+        XCTAssertEqual(testPedometerDataCollector.count, testPedometerData.count)
+    }
+    
+    func testStartEventUpdates() {
+        
+    }
+    
+    func testStopEventUpdates() {
+        XCTAssertFalse(testMockCMPedometer!.stopEventUpdatesCalled)
+        testMockCMPedometer?.stopEventUpdates()
+        XCTAssertTrue(testMockCMPedometer!.stopEventUpdatesCalled)
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+

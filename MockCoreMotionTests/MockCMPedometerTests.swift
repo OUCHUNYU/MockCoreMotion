@@ -32,30 +32,35 @@ class MockCMPedometerTests: XCTestCase {
         XCTAssertFalse(MockCMPedometer.isFloorCountingAvailableCalled)
         XCTAssertFalse(MockCMPedometer.isPaceAvailableCalled)
         XCTAssertFalse(MockCMPedometer.isCadenceAvailableCalled)
+        XCTAssertFalse(MockCMPedometer.isPedometerEventTrackingAvailableCalled)
         
         XCTAssertFalse(MockCMPedometer.isStepCountingAvailable())
         XCTAssertFalse(MockCMPedometer.isDistanceAvailable())
         XCTAssertFalse(MockCMPedometer.isFloorCountingAvailable())
         XCTAssertFalse(MockCMPedometer.isPaceAvailable())
         XCTAssertFalse(MockCMPedometer.isCadenceAvailable())
+        XCTAssertFalse(MockCMPedometer.isPedometerEventTrackingAvailable())
         
         MockCMPedometer._isStepCountingAvailable = true
         MockCMPedometer._isDistanceAvailable = true
         MockCMPedometer._isFloorCountingAvailable = true
         MockCMPedometer._isPaceAvailable = true
         MockCMPedometer._isCadenceAvailable = true
+        MockCMPedometer._isPedometerEventTrackingAvailable = true
 
         XCTAssertTrue(MockCMPedometer.isStepCountingAvailableCalled)
         XCTAssertTrue(MockCMPedometer.isDistanceAvailableCalled)
         XCTAssertTrue(MockCMPedometer.isFloorCountingAvailableCalled)
         XCTAssertTrue(MockCMPedometer.isPaceAvailableCalled)
         XCTAssertTrue(MockCMPedometer.isCadenceAvailableCalled)
+        XCTAssertTrue(MockCMPedometer.isPedometerEventTrackingAvailableCalled)
         
         XCTAssertTrue(MockCMPedometer.isStepCountingAvailable())
         XCTAssertTrue(MockCMPedometer.isDistanceAvailable())
         XCTAssertTrue(MockCMPedometer.isFloorCountingAvailable())
         XCTAssertTrue(MockCMPedometer.isPaceAvailable())
         XCTAssertTrue(MockCMPedometer.isCadenceAvailable())
+        XCTAssertTrue(MockCMPedometer.isPedometerEventTrackingAvailable())
     }
     
     // TODO: Handler error test
@@ -124,11 +129,11 @@ class MockCMPedometerTests: XCTestCase {
             testPedometerDataCollector.append(data!)
         }
         
-        testMockCMPedometer?.update(with: nil) {
+        testMockCMPedometer?.update(with: testPedometerData) {
             (data, error) in
             isHandlerCalled = true
         }
-        XCTAssertFalse(isHandlerCalled, "If startUpdates is never called before, then update should call the handler with update")
+        XCTAssertFalse(isHandlerCalled, "If startUpdates is never called before, then update should not call the handler")
         
         testMockCMPedometer?.startUpdates(from: testStart, withHandler: updateHandler)
         
@@ -138,8 +143,17 @@ class MockCMPedometerTests: XCTestCase {
         XCTAssertEqual(testPedometerDataCollector.count, testPedometerData.count)
     }
     
+    // TODO: Handler error test
     func testStartEventUpdates() {
+        XCTAssertFalse(testMockCMPedometer!.startEventUpdatesCalled)
+        XCTAssertNil(testMockCMPedometer?.startEventUpdatesError)
         
+        testMockCMPedometer!.startEventUpdates() {
+            [unowned self] (data, error) in
+            XCTAssertTrue(self.testMockCMPedometer!.startEventUpdatesCalled)
+            XCTAssertNil(data)
+            XCTAssertNil(error)
+        }
     }
     
     func testStopEventUpdates() {
@@ -148,15 +162,35 @@ class MockCMPedometerTests: XCTestCase {
         XCTAssertTrue(testMockCMPedometer!.stopEventUpdatesCalled)
     }
     
+    // TODO: Handler error test
+    func testUpdateEvents() {
+        var isHandlerCalled = false
+        var testPedometerEventCollector = [CMPedometerEvent]()
+        var testPedometerEvents = [CMPedometerEvent]()
+        for _ in 1...5 {
+            testPedometerEvents.append(CMPedometerEvent())
+        }
+        func updateEventsHandler(data: CMPedometerEvent?, error: Error?) {
+            guard data != nil else {
+                return
+            }
+            testPedometerEventCollector.append(data!)
+        }
+        
+        testMockCMPedometer?.updateEvents(with: testPedometerEvents) {
+            (data, error) in
+            isHandlerCalled = true
+        }
+        
+        XCTAssertFalse(isHandlerCalled, "If startEventUpdates is never called before, then updateEvents should not call the handler")
+        
+        testMockCMPedometer?.startEventUpdates(handler: updateEventsHandler)
+        
+        XCTAssertEqual(testPedometerEventCollector.count, 0, "Calling startEventUpdates should not have update")
+        
+        testMockCMPedometer?.updateEvents(with: testPedometerEvents)
+        
+        XCTAssertEqual(testPedometerEventCollector.count, testPedometerEvents.count)
+    }
+    
 }
-
-
-
-
-
-
-
-
-
-
-

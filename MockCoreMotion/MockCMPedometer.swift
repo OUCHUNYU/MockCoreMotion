@@ -14,6 +14,9 @@ open class MockCMPedometer: CMPedometer {
     private var startUpdatesData: [CMPedometerData]?
     private var startUpdatesHandler: CMPedometerHandler?
     
+    private var startEventUpdatesEvents: [CMPedometerEvent]?
+    private var startEventUpdatesHandler: CMPedometerEventHandler?
+    
     open override static func isStepCountingAvailable() -> Bool {
         isStepCountingAvailableCalled = true
         return _isStepCountingAvailable ?? false
@@ -37,6 +40,11 @@ open class MockCMPedometer: CMPedometer {
     open override static func isCadenceAvailable() -> Bool {
         isCadenceAvailableCalled = true
         return _isCadenceAvailable ?? false
+    }
+    
+    open override static func isPedometerEventTrackingAvailable() -> Bool {
+        isPedometerEventTrackingAvailableCalled = true
+        return _isPedometerEventTrackingAvailable ?? false
     }
     
     open override func queryPedometerData(from start: Date, to end: Date, withHandler handler: @escaping CMPedometerHandler) {
@@ -69,11 +77,11 @@ open class MockCMPedometer: CMPedometer {
     }
     
     open func update(with: [CMPedometerData]?, error: Error? = nil, start: Date? = nil, withHandler: CMPedometerHandler? = nil) {
-        startUpdatesData = with
-        
         guard startUpdatesCalled else {
             return
         }
+        
+        startUpdatesData = with
         
         if error != nil {
             startUpdatesHandlerError = error
@@ -99,6 +107,7 @@ open class MockCMPedometer: CMPedometer {
             startUpdatesHandler!(nil, startUpdatesHandlerError)
             return
         }
+        
         for data in startUpdatesData! {
             startUpdatesHandler!(data, nil)
         }
@@ -106,17 +115,49 @@ open class MockCMPedometer: CMPedometer {
     
     open override func startEventUpdates(handler: @escaping CMPedometerEventHandler) {
         startEventUpdatesCalled = true
-        // TODO
+        startEventUpdatesHandler = handler
+        updateEvents(with: startEventUpdatesEvents, error: startEventUpdatesError)
     }
     
     open override func stopEventUpdates() {
         stopEventUpdatesCalled = true
-        // TODO
+        startEventUpdatesCalled = false
+        startEventUpdatesEvents = nil
+        startEventUpdatesHandler = nil
+        startEventUpdatesError = nil
+    }
+    
+    open func updateEvents(with: [CMPedometerEvent]?, error: Error? = nil, withHandler: CMPedometerEventHandler? = nil) {
+        guard startEventUpdatesCalled else {
+            return
+        }
+        
+        startEventUpdatesEvents = with
+        
+        if error != nil {
+            startEventUpdatesError = error
+        }
+        
+        if withHandler != nil {
+            startEventUpdatesHandler = withHandler
+        }
+        
+        guard startEventUpdatesHandler != nil else {
+            return
+        }
+        
+        guard startEventUpdatesEvents != nil && startEventUpdatesError == nil else {
+            startEventUpdatesHandler!(nil, startEventUpdatesError)
+            return
+        }
+        
+        for event in startEventUpdatesEvents! {
+            startEventUpdatesHandler!(event, nil)
+        }
     }
     
     /// Instance Interface
     open var stopUpdatesCalled = false
-    open var startEventUpdatesCalled = false
     open var stopEventUpdatesCalled = false
     // #queryPedometerData
     open var queryPedometerDataCalled = false
@@ -127,8 +168,10 @@ open class MockCMPedometer: CMPedometer {
     // #startUpdates
     open var startUpdatesCalled = false
     open var startUpdatesStart: Date?
-    
     open var startUpdatesHandlerError: Error?
+    // #startEventUpdates
+    open var startEventUpdatesCalled = false
+    open var startEventUpdatesError: Error?
     
     open func flushState() {
         // #queryPedometerData
@@ -142,7 +185,7 @@ open class MockCMPedometer: CMPedometer {
         // #stopUpdates
         stopUpdatesCalled = false
         // #startEventUpdates
-        startEventUpdatesCalled = false
+        stopEventUpdates()
         // #stopEventUpdates
         stopEventUpdatesCalled = false
     }
@@ -153,12 +196,14 @@ open class MockCMPedometer: CMPedometer {
     open static var isFloorCountingAvailableCalled = false
     open static var isPaceAvailableCalled = false
     open static var isCadenceAvailableCalled = false
+    open static var isPedometerEventTrackingAvailableCalled = false
 
     open static var _isStepCountingAvailable: Bool?
     open static var _isDistanceAvailable: Bool?
     open static var _isFloorCountingAvailable: Bool?
     open static var _isPaceAvailable: Bool?
     open static var _isCadenceAvailable: Bool?
+    open static var _isPedometerEventTrackingAvailable: Bool?
     
     open static func flushState(instance: MockCMPedometer) {
         isStepCountingAvailableCalled = false
@@ -166,12 +211,14 @@ open class MockCMPedometer: CMPedometer {
         isFloorCountingAvailableCalled = false
         isPaceAvailableCalled = false
         isCadenceAvailableCalled = false
+        isPedometerEventTrackingAvailableCalled = false
 
         _isStepCountingAvailable = nil
         _isDistanceAvailable = nil
         _isFloorCountingAvailable = nil
         _isPaceAvailable = nil
         _isCadenceAvailable = nil
+        _isPedometerEventTrackingAvailable = nil
         instance.flushState()
     }
     

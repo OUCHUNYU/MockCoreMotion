@@ -9,7 +9,7 @@
 import Foundation
 import CoreMotion
 
-class MockCMPedometerData: CMPedometerData {
+open class MockCMPedometerData: CMPedometerData {
     private var _startDate: Date?
     private var _endDate: Date?
     private var _numberOfSteps: NSNumber?

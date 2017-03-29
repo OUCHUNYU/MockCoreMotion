@@ -15,6 +15,7 @@
 		9D665CB91E8A312F002CB4F4 /* MockCMPedometerDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D665CB81E8A312F002CB4F4 /* MockCMPedometerDataTests.swift */; };
 		9D6BEC081E87A00900DAFF13 /* MockCMMotionActivityManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BEC071E87A00900DAFF13 /* MockCMMotionActivityManagerTests.swift */; };
 		9DBE7FB11E8BA6E4004B7C8A /* MockCMPedometerEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBE7FB01E8BA6E4004B7C8A /* MockCMPedometerEventTests.swift */; };
+		9DBE7FB31E8BA9B6004B7C8A /* MockCMRecordedAccelerometerDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBE7FB21E8BA9B6004B7C8A /* MockCMRecordedAccelerometerDataTests.swift */; };
 		9DC4811B1E77DE59007DE310 /* MockCMDeviceMotionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4811A1E77DE59007DE310 /* MockCMDeviceMotionTests.swift */; };
 		9DC721491E862F3E008BDAE0 /* MockCMMotionActivityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC721481E862F3E008BDAE0 /* MockCMMotionActivityTests.swift */; };
 		9DDC82D21E74CBA8008EF52C /* MockCoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DDC82C81E74CBA8008EF52C /* MockCoreMotion.framework */; };
@@ -62,6 +63,7 @@
 		9D665CB81E8A312F002CB4F4 /* MockCMPedometerDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMPedometerDataTests.swift; sourceTree = "<group>"; };
 		9D6BEC071E87A00900DAFF13 /* MockCMMotionActivityManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMMotionActivityManagerTests.swift; sourceTree = "<group>"; };
 		9DBE7FB01E8BA6E4004B7C8A /* MockCMPedometerEventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMPedometerEventTests.swift; sourceTree = "<group>"; };
+		9DBE7FB21E8BA9B6004B7C8A /* MockCMRecordedAccelerometerDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMRecordedAccelerometerDataTests.swift; sourceTree = "<group>"; };
 		9DC4811A1E77DE59007DE310 /* MockCMDeviceMotionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMDeviceMotionTests.swift; sourceTree = "<group>"; };
 		9DC721481E862F3E008BDAE0 /* MockCMMotionActivityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMMotionActivityTests.swift; sourceTree = "<group>"; };
 		9DDC82C81E74CBA8008EF52C /* MockCoreMotion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MockCoreMotion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +177,7 @@
 				9DE81FA61E884C9900E9089E /* MockCMPedometerTests.swift */,
 				9D665CB81E8A312F002CB4F4 /* MockCMPedometerDataTests.swift */,
 				9DBE7FB01E8BA6E4004B7C8A /* MockCMPedometerEventTests.swift */,
+				9DBE7FB21E8BA9B6004B7C8A /* MockCMRecordedAccelerometerDataTests.swift */,
 				9DDC82D81E74CBA8008EF52C /* Info.plist */,
 			);
 			path = MockCoreMotionTests;
@@ -343,6 +346,7 @@
 			files = (
 				9D6BEC081E87A00900DAFF13 /* MockCMMotionActivityManagerTests.swift in Sources */,
 				9DDC82D71E74CBA8008EF52C /* MockCoreMotionTests.swift in Sources */,
+				9DBE7FB31E8BA9B6004B7C8A /* MockCMRecordedAccelerometerDataTests.swift in Sources */,
 				50EBE8C01E7E69B600DC898B /* MockCMLogItemTests.swift in Sources */,
 				9DC4811B1E77DE59007DE310 /* MockCMDeviceMotionTests.swift in Sources */,
 				500E79101E75CD5600857C92 /* MockCMAccelerometerDataTests.swift in Sources */,

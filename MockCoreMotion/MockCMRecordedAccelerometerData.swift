@@ -9,23 +9,30 @@
 import Foundation
 import CoreMotion
 
-open class MockCMRecordedAccelerometerData: CMRecordedAccelerometerData {
+extension CMRecordedAccelerometerData: CMRecordedAccelerometerDataProtocol {}
+
+public protocol CMRecordedAccelerometerDataProtocol {
+    var identifier: UInt64 { get }
+    var startDate: Date { get }
+}
+
+open class MockCMRecordedAccelerometerData: MockCMAccelerometerData, CMRecordedAccelerometerDataProtocol {
     
     private var _startDate: Date?
     private var _identifier: UInt64?
     
-    open override var startDate: Date {
+    open var startDate: Date {
         get {
-            return _startDate ?? super.startDate
+            return _startDate!
         }
         set {
             _startDate = newValue
         }
     }
     
-    open override var identifier: UInt64 {
+    open var identifier: UInt64 {
         get {
-            return _identifier ?? super.identifier
+            return _identifier!
         }
         set {
             _identifier = newValue
@@ -33,11 +40,11 @@ open class MockCMRecordedAccelerometerData: CMRecordedAccelerometerData {
     }
     
     public init(startDate: Date, identifier: UInt64) {
+        super.init(acceleration: CMAcceleration(x: 1.1, y: 1.1, z: 1.1))
         _startDate = startDate
         _identifier = identifier
-        super.init()
     }
-    
+
     public required init?(coder: NSCoder) {
         if coder.containsValue(forKey: MockCMRecordedAccelerometerData.startDateKey),
             let startDateKeyValue = coder.decodeObject(forKey: MockCMRecordedAccelerometerData.startDateKey) as? Date {
@@ -61,3 +68,56 @@ open class MockCMRecordedAccelerometerData: CMRecordedAccelerometerData {
     }
     
 }
+
+//open class MockCMRecordedAccelerometerData: MockCMAccelerometerData {
+//    
+//    private var _startDate: Date?
+//    private var _identifier: UInt64?
+//    
+//    open override var startDate: Date {
+//        get {
+//            return _startDate ?? super.startDate
+//        }
+//        set {
+//            _startDate = newValue
+//        }
+//    }
+//    
+//    open override var identifier: UInt64 {
+//        get {
+//            return _identifier ?? super.identifier
+//        }
+//        set {
+//            _identifier = newValue
+//        }
+//    }
+//    
+//    public init(startDate: Date, identifier: UInt64) {
+//        _startDate = startDate
+//        _identifier = identifier
+//        super.init()
+//    }
+//    
+//    public required init?(coder: NSCoder) {
+//        if coder.containsValue(forKey: MockCMRecordedAccelerometerData.startDateKey),
+//            let startDateKeyValue = coder.decodeObject(forKey: MockCMRecordedAccelerometerData.startDateKey) as? Date {
+//            _startDate = startDateKeyValue
+//        }
+//        
+//        if coder.containsValue(forKey: MockCMRecordedAccelerometerData.identifierKey),
+//            let identifierKeyValue = coder.decodeObject(forKey: MockCMRecordedAccelerometerData.identifierKey) as? UInt64 {
+//            _identifier = identifierKeyValue
+//        }
+//        
+//        super.init(coder: coder)
+//    }
+//    
+//    private static let startDateKey = "_startDate"
+//    private static let identifierKey = "_identifier"
+//    
+//    open override func encode(with coder: NSCoder) {
+//        coder.encode(startDate, forKey: MockCMRecordedAccelerometerData.startDateKey)
+//        coder.encode(identifier, forKey: MockCMRecordedAccelerometerData.identifierKey)
+//    }
+//    
+//}

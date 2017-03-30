@@ -11,6 +11,7 @@
 		500E79121E75D05200857C92 /* MockCMAltimeterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E79111E75D05200857C92 /* MockCMAltimeterTests.swift */; };
 		501516681E793311005A8217 /* MockCMGyroDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501516671E793311005A8217 /* MockCMGyroDataTests.swift */; };
 		50EBE8C01E7E69B600DC898B /* MockCMLogItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBE8BF1E7E69B600DC898B /* MockCMLogItemTests.swift */; };
+		9D21EE641E9189CE0068F25E /* MockCMSensorDataListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D21EE631E9189CE0068F25E /* MockCMSensorDataListTests.swift */; };
 		9D3C2FBF1E8263BF003EA090 /* MockCMMagnetometerDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3C2FBE1E8263BF003EA090 /* MockCMMagnetometerDataTests.swift */; };
 		9D665CB91E8A312F002CB4F4 /* MockCMPedometerDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D665CB81E8A312F002CB4F4 /* MockCMPedometerDataTests.swift */; };
 		9D6BEC081E87A00900DAFF13 /* MockCMMotionActivityManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BEC071E87A00900DAFF13 /* MockCMMotionActivityManagerTests.swift */; };
@@ -59,6 +60,7 @@
 		500E79111E75D05200857C92 /* MockCMAltimeterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMAltimeterTests.swift; sourceTree = "<group>"; };
 		501516671E793311005A8217 /* MockCMGyroDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMGyroDataTests.swift; sourceTree = "<group>"; };
 		50EBE8BF1E7E69B600DC898B /* MockCMLogItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMLogItemTests.swift; sourceTree = "<group>"; };
+		9D21EE631E9189CE0068F25E /* MockCMSensorDataListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMSensorDataListTests.swift; sourceTree = "<group>"; };
 		9D3C2FBE1E8263BF003EA090 /* MockCMMagnetometerDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMMagnetometerDataTests.swift; sourceTree = "<group>"; };
 		9D665CB81E8A312F002CB4F4 /* MockCMPedometerDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMPedometerDataTests.swift; sourceTree = "<group>"; };
 		9D6BEC071E87A00900DAFF13 /* MockCMMotionActivityManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCMMotionActivityManagerTests.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				9D665CB81E8A312F002CB4F4 /* MockCMPedometerDataTests.swift */,
 				9DBE7FB01E8BA6E4004B7C8A /* MockCMPedometerEventTests.swift */,
 				9DBE7FB21E8BA9B6004B7C8A /* MockCMRecordedAccelerometerDataTests.swift */,
+				9D21EE631E9189CE0068F25E /* MockCMSensorDataListTests.swift */,
 				9DDC82D81E74CBA8008EF52C /* Info.plist */,
 			);
 			path = MockCoreMotionTests;
@@ -351,6 +354,7 @@
 				9DC4811B1E77DE59007DE310 /* MockCMDeviceMotionTests.swift in Sources */,
 				500E79101E75CD5600857C92 /* MockCMAccelerometerDataTests.swift in Sources */,
 				9DC721491E862F3E008BDAE0 /* MockCMMotionActivityTests.swift in Sources */,
+				9D21EE641E9189CE0068F25E /* MockCMSensorDataListTests.swift in Sources */,
 				500E79121E75D05200857C92 /* MockCMAltimeterTests.swift in Sources */,
 				9D3C2FBF1E8263BF003EA090 /* MockCMMagnetometerDataTests.swift in Sources */,
 				501516681E793311005A8217 /* MockCMGyroDataTests.swift in Sources */,

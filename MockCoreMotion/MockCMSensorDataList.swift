@@ -10,14 +10,23 @@ import Foundation
 import CoreMotion
 
 open class MockCMSensorDataList: CMSensorDataList {
-    // TODO:
-    // Should be able to init with simple data sctructure like array of accData
-    // after extend with secquence it can be iterated
-    // can be iterated with #next
-    public func next() -> MockCMRecordedAccelerometerData {
-        let data = MockCMRecordedAccelerometerData(startDate: Date(), identifier: 1231)
-        data.acceleration = CMAcceleration(x: 1.0, y: 2.0, z: 3.0)
-        return data
+
+    var result: NSArray = NSArray(
+        array: [
+            MockCMRecordedAccelerometerData(startDate: Date(), identifier: 1111111, acceleration: CMAcceleration(x: 1.0, y: 2.0, z: 3.0)),
+            MockCMRecordedAccelerometerData(startDate: Date(), identifier: 2222222, acceleration: CMAcceleration(x: 4.0, y: 5.0, z: 6.0)),
+            MockCMRecordedAccelerometerData(startDate: Date(), identifier: 3333333, acceleration: CMAcceleration(x: 7.0, y: 8.0, z: 9.0))
+        ]
+    )
+    
+    open override func countByEnumerating(with state: UnsafeMutablePointer<NSFastEnumerationState>, objects buffer: AutoreleasingUnsafeMutablePointer<AnyObject?>!, count len: Int) -> Int {
+        return result.countByEnumerating(with: state, objects: buffer, count: len)
     }
     
+}
+
+extension MockCMSensorDataList: Sequence {
+    public func makeIterator() -> NSFastEnumerationIterator {
+        return NSFastEnumerationIterator(self)
+    }
 }

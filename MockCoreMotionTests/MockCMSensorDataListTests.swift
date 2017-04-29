@@ -25,17 +25,11 @@ class MockCMSensorDataListTests: XCTestCase {
     func testEnumerated() {
         let testMockCMSensorDataList = MockCMSensorDataList()
         
-        testMockCMSensorDataList.enumerated().map({
-            XCTAssertNotNil(($0.element as AnyObject).acceleration.x)
-        })
-        
-//        SensorReading(timestamp: ($0.element as AnyObject).startDate, type: "a", x: ($0.element as AnyObject).acceleration.x, y: ($0.element as AnyObject).acceleration.y, z: ($0.element as AnyObject).acceleration.z) })
+        for item in testMockCMSensorDataList {
+            let data = item as! MockCMRecordedAccelerometerData
+            XCTAssertNotNil(data.acceleration.x)
+            print(data.acceleration.x)
+        }
     }
     
-}
-
-extension MockCMSensorDataList: Sequence {
-    public func makeIterator() -> NSFastEnumerationIterator {
-        return NSFastEnumerationIterator(self)
-    }
 }

@@ -139,7 +139,6 @@
 		9DDC82CA1E74CBA8008EF52C /* MockCoreMotion */ = {
 			isa = PBXGroup;
 			children = (
-				9DDC83071E752EF8008EF52C /* Injectables */,
 				9DDC83081E752F09008EF52C /* Support Files */,
 				9DDC82E51E74CD0D008EF52C /* MockCMAccelerometerData.swift */,
 				9DDC82E71E752D76008EF52C /* MockCMAltimeter.swift */,
@@ -192,13 +191,6 @@
 				9DDC82E31E74CC8C008EF52C /* CoreMotion.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9DDC83071E752EF8008EF52C /* Injectables */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Injectables;
 			sourceTree = "<group>";
 		};
 		9DDC83081E752F09008EF52C /* Support Files */ = {

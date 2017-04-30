@@ -10,21 +10,34 @@ import Foundation
 import CoreMotion
 
 open class MockCMSensorDataList: CMSensorDataList {
-
-    var result: NSArray = NSArray(
-        array: [
-            MockCMRecordedAccelerometerData(startDate: Date(), identifier: 1111111, acceleration: CMAcceleration(x: 1.0, y: 2.0, z: 3.0)),
-            MockCMRecordedAccelerometerData(startDate: Date(), identifier: 2222222, acceleration: CMAcceleration(x: 4.0, y: 5.0, z: 6.0)),
-            MockCMRecordedAccelerometerData(startDate: Date(), identifier: 3333333, acceleration: CMAcceleration(x: 7.0, y: 8.0, z: 9.0))
-        ]
-    )
+    
+    private var data = NSArray(array: [MockCMRecordedAccelerometerData]())
+    
+    open var recordedAccelerometerData: Array<MockCMRecordedAccelerometerData> {
+        get {
+            var result = [MockCMRecordedAccelerometerData]()
+            for item in data {
+                result.append(item as! MockCMRecordedAccelerometerData)
+            }
+            return result
+        }
+        set(newValue) {
+            self.data = NSArray(array: newValue)
+        }
+    }
+    
+    public init(recordedAccelerometerDataArray: [MockCMRecordedAccelerometerData]) {
+        super.init()
+        recordedAccelerometerData = recordedAccelerometerDataArray
+    }
     
     open override func countByEnumerating(with state: UnsafeMutablePointer<NSFastEnumerationState>, objects buffer: AutoreleasingUnsafeMutablePointer<AnyObject?>!, count len: Int) -> Int {
-        return result.countByEnumerating(with: state, objects: buffer, count: len)
+        return data.countByEnumerating(with: state, objects: buffer, count: len)
     }
     
 }
 
+// Conform Sequence to enable iterating abilities
 extension MockCMSensorDataList: Sequence {
     public func makeIterator() -> NSFastEnumerationIterator {
         return NSFastEnumerationIterator(self)

@@ -9,7 +9,27 @@
 import Foundation
 import CoreMotion
 
+// Design:
+// We should follow the usage logic of this class
+// use default 50hz data rate.
+// Create a custom object that has start time, end time, datalist properties
+// when ::recordAccelerometer called we should create an instance of the custom object.
+// Base on 50 hz rate, we create certain amount of recordedAccData and wrappe them inside the custom object
+// Then push this custome instance to an array
+
+// When call accelerometerData with from time and end time
+// we loop over the array find the custom objects that have starttime and endtime falls in this range
+// combine all of the accelerometer data and init a datalist with acc data and return 
+// if nothing found return nil
+
+
 open class MockCMSensorRecorder: CMSensorRecorder {
+    
+    private struct AccelerometerRecorder {
+        var startTime: TimeInterval = 0.0
+        var endTime: TimeInterval = 0.0
+        var recordedData = [MockCMRecordedAccelerometerData]()
+    }
     
     private var recordedAccData: [Date: MockCMRecordedAccelerometerData] = [Date: MockCMRecordedAccelerometerData]()
     
@@ -22,31 +42,27 @@ open class MockCMSensorRecorder: CMSensorRecorder {
     }
     
     open override func accelerometerData(from fromDate: Date, to toDate: Date) -> CMSensorDataList? {
-        
+//        fromDate.timeIntervalSince1970
         return nil
     }
-
-    // TODO: Should generate date for in 50hz for this duration 10 seconds = 500 samples
-    //       Should also record both start time and end time of this duration, so the 
-    //       accelerometerData() can pass in time params to retrieve. If no recorded we return nil
-    
-    // TODO: Make a data frame that associate with a start time, map it to an object such as
-    //        {
-    //           starting timstamp: {
-    //                                 duration: 10 second
-    //                                 data: [data1, data2, data3]
-    //                              }
-    //         }
-    //       This way all those calls to recordAccelerometer with duration can be recorded for a single
-    //       MockCMSensorRecorder instance. Then when call accelerometerData, we have all those recorded
-    //       data to return or return nil
     
     open override func recordAccelerometer(forDuration duration: TimeInterval) {
-        recordDuration = duration
-        // TODO:
-        // get current Date() as key
-        // directly creats duration * 50 data samples as associated value for this key
-//        MockCMSensorDataList()
+        let startTs = Date().getMillisecondsSince1970()
+        let endTs = startTs + duration
+        var dataArray = [MockCMRecordedAccelerometerData]()
+        for i in 0..<Int(round(duration)) {
+            dataArray.append(MockCMRecordedAccelerometerData(
+                startDate: Date(timeIntervalSince1970: startTs + Double(i)),
+                identifier: ,
+                acceleration: <#T##CMAcceleration#>
+            )
+        }
+        let recorder = AccelerometerRecorder(
+            startTime: startTs,
+            endTime: endTs,
+            recordedData: [MockCMRecordedAccelerometerData]
+        )
+        
     }
     
     // Static Interface
@@ -56,4 +72,10 @@ open class MockCMSensorRecorder: CMSensorRecorder {
     // Instance Interface
     open var recordDuration: TimeInterval?
     
+}
+
+extension Date {
+    public func getMillisecondsSince1970() -> TimeInterval {
+        return self.timeIntervalSince1970 * 1000
+    }
 }

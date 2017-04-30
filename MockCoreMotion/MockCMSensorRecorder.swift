@@ -9,9 +9,27 @@
 import Foundation
 import CoreMotion
 
+
 open class MockCMSensorRecorder: CMSensorRecorder {
     
-    private var recordedAccData: [Date: MockCMRecordedAccelerometerData] = [Date: MockCMRecordedAccelerometerData]()
+    private struct AccelerometerRecorder {
+        var startTime: TimeInterval = 0.0
+        var endTime: TimeInterval = 0.0
+        var recordedData = [MockCMRecordedAccelerometerData]()
+        
+        func validateRecorderTimeWith(fromTimeInterval: TimeInterval, toTimeInterval: TimeInterval) -> Bool {
+            if startTime >= fromTimeInterval && endTime <= toTimeInterval {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+    
+    private var accRecorderArray = [AccelerometerRecorder]()
+    
+    // Sampling rate when calling recordAccelerometer, default is 50hz
+    var samplingRate = 50
     
     open override static func isAccelerometerRecordingAvailable() -> Bool {
         return _isAccelerometerRecordingAvailable ?? false
@@ -22,38 +40,56 @@ open class MockCMSensorRecorder: CMSensorRecorder {
     }
     
     open override func accelerometerData(from fromDate: Date, to toDate: Date) -> CMSensorDataList? {
-        
-        return nil
+        let fromTimeInterval = fromDate.getMillisecondsSince1970()
+        let toTimeInterval = toDate.getMillisecondsSince1970()
+        var accDataArray = [MockCMRecordedAccelerometerData]()
+        // Check all recorders that have start and end time within fromDate and toDate
+        for recorder in accRecorderArray {
+            if recorder.validateRecorderTimeWith(fromTimeInterval: fromTimeInterval, toTimeInterval: toTimeInterval) {
+                accDataArray += recorder.recordedData
+            }
+        }
+        if accDataArray.isEmpty {
+            return nil
+        }
+        return MockCMSensorDataList(recordedAccelerometerDataArray: accDataArray)
     }
-
-    // TODO: Should generate date for in 50hz for this duration 10 seconds = 500 samples
-    //       Should also record both start time and end time of this duration, so the 
-    //       accelerometerData() can pass in time params to retrieve. If no recorded we return nil
-    
-    // TODO: Make a data frame that associate with a start time, map it to an object such as
-    //        {
-    //           starting timstamp: {
-    //                                 duration: 10 second
-    //                                 data: [data1, data2, data3]
-    //                              }
-    //         }
-    //       This way all those calls to recordAccelerometer with duration can be recorded for a single
-    //       MockCMSensorRecorder instance. Then when call accelerometerData, we have all those recorded
-    //       data to return or return nil
     
     open override func recordAccelerometer(forDuration duration: TimeInterval) {
-        recordDuration = duration
-        // TODO:
-        // get current Date() as key
-        // directly creats duration * 50 data samples as associated value for this key
-//        MockCMSensorDataList()
+        let startTs = Date().getMillisecondsSince1970()
+        let endTs = startTs + duration * 1000000
+        var dataArray = [MockCMRecordedAccelerometerData]()
+        
+        // create 50 recorded data per duration second
+        for i in 0..<Int(round(duration)) {
+            for _ in 0..<samplingRate {
+                let recordedAcc = MockCMRecordedAccelerometerData(
+                    startDate: Date(timeIntervalSince1970: startTs + Double(i)),
+                    identifier: 1111111111,
+                    acceleration: CMAcceleration(x: drand48(), y: drand48(), z: drand48())
+                )
+                dataArray.append(recordedAcc)
+            }
+        }
+        
+        let recorder = AccelerometerRecorder(startTime: startTs, endTime: endTs, recordedData: dataArray)
+        
+        accRecorderArray.append(recorder)
     }
     
     // Static Interface
     open static var _isAccelerometerRecordingAvailable: Bool?
     open static var _isAuthorizedForRecording: Bool?
     
-    // Instance Interface
-    open var recordDuration: TimeInterval?
+    public override init() {}
     
+    public init(samplingRate rate: Int) {
+        samplingRate = rate
+    }
+}
+
+extension Date {
+    public func getMillisecondsSince1970() -> TimeInterval {
+        return self.timeIntervalSince1970 * 1000000
+    }
 }

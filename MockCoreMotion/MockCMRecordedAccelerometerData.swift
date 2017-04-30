@@ -9,35 +9,42 @@
 import Foundation
 import CoreMotion
 
-open class MockCMRecordedAccelerometerData: CMRecordedAccelerometerData {
+extension CMRecordedAccelerometerData: CMRecordedAccelerometerDataProtocol {}
+
+public protocol CMRecordedAccelerometerDataProtocol {
+    var identifier: UInt64 { get }
+    var startDate: Date { get }
+}
+
+open class MockCMRecordedAccelerometerData: MockCMAccelerometerData, CMRecordedAccelerometerDataProtocol {
     
     private var _startDate: Date?
     private var _identifier: UInt64?
     
-    open override var startDate: Date {
+    open var startDate: Date {
         get {
-            return _startDate ?? super.startDate
+            return _startDate!
         }
         set {
             _startDate = newValue
         }
     }
     
-    open override var identifier: UInt64 {
+    open var identifier: UInt64 {
         get {
-            return _identifier ?? super.identifier
+            return _identifier!
         }
         set {
             _identifier = newValue
         }
     }
     
-    public init(startDate: Date, identifier: UInt64) {
+    public init(startDate: Date, identifier: UInt64, acceleration: CMAcceleration) {
+        super.init(acceleration: acceleration)
         _startDate = startDate
         _identifier = identifier
-        super.init()
     }
-    
+
     public required init?(coder: NSCoder) {
         if coder.containsValue(forKey: MockCMRecordedAccelerometerData.startDateKey),
             let startDateKeyValue = coder.decodeObject(forKey: MockCMRecordedAccelerometerData.startDateKey) as? Date {

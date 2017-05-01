@@ -31,6 +31,9 @@ open class MockCMSensorRecorder: CMSensorRecorder {
     // Sampling rate when calling recordAccelerometer, default is 50hz
     var samplingRate = 50
     
+    public var accelerometerDataCalled = false
+    public var recordAccelerometerCalled = false
+    
     open override static func isAccelerometerRecordingAvailable() -> Bool {
         return _isAccelerometerRecordingAvailable ?? false
     }
@@ -40,6 +43,7 @@ open class MockCMSensorRecorder: CMSensorRecorder {
     }
     
     open override func accelerometerData(from fromDate: Date, to toDate: Date) -> CMSensorDataList? {
+        accelerometerDataCalled = true
         let fromTimeInterval = fromDate.getMillisecondsSince1970()
         let toTimeInterval = toDate.getMillisecondsSince1970()
         var accDataArray = [MockCMRecordedAccelerometerData]()
@@ -56,6 +60,7 @@ open class MockCMSensorRecorder: CMSensorRecorder {
     }
     
     open override func recordAccelerometer(forDuration duration: TimeInterval) {
+        recordAccelerometerCalled = true
         let startTs = Date().getMillisecondsSince1970()
         let endTs = startTs + duration * 1000000
         var dataArray = [MockCMRecordedAccelerometerData]()

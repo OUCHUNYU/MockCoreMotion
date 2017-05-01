@@ -39,4 +39,8 @@ class MockCMAccelerometerDataTests: XCTestCase {
         XCTAssertEqual(testMockCMAccelerometerData?.acceleration.z, testZ)
     }
     
+    func testGetRandomMockCMAccelerometerData() {
+        XCTAssertNotNil(MockCMAccelerometerData.getRandomMockCMAccelerometerData().acceleration)
+    }
+    
 }

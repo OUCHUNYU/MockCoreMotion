@@ -51,4 +51,8 @@ open class MockCMAccelerometerData: CMAccelerometerData {
         coder.encode(acceleration, forKey: MockCMAccelerometerData.accelerationKey)
     }
     
+    public static func getRandomMockCMAccelerometerData() -> MockCMAccelerometerData {
+        return MockCMAccelerometerData(acceleration: CMAcceleration(x: drand48(), y: drand48(), z: drand48()))
+    }
+    
 }

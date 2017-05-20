@@ -48,4 +48,9 @@ open class MockCMGyroData: CMGyroData {
     open override func encode(with coder: NSCoder) {
         coder.encode(rotationRate, forKey: MockCMGyroData.rotationRateKey)
     }
+    
+    // Random MockCMGyroData generator
+    public static func getRandomMockCMGyroData() -> MockCMGyroData {
+        return MockCMGyroData(rotationRate: CMRotationRate(x: drand48(), y: drand48(), z: drand48()))
+    }
 }

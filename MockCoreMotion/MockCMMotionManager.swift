@@ -14,7 +14,6 @@ open class MockCMMotionManager: CMMotionManager {
     
 //    var accelerometerUpdateInterval: TimeInterval { get set } This one is get and set no need to mock just call it
     
-
     public var _isAccelerometerAvailable: Bool?
     open override var isAccelerometerAvailable: Bool {
         get {
@@ -25,32 +24,29 @@ open class MockCMMotionManager: CMMotionManager {
         }
     }
     
-        /*
-         *  accelerometerActive
-         *
-         *  Discussion:
-         *			Determines whether the CMMotionManager is currently providing
-         *			accelerometer updates.
-         */
+    /*
+     *  accelerometerActive
+     *
+     *  Discussion:
+     *			Determines whether the CMMotionManager is currently providing
+     *			accelerometer updates.
+     */
     public var _isAccelerometerActive: Bool?
     open override var isAccelerometerActive: Bool {
         get {
-            return _isAccelerometerAvailable ?? super.isAccelerometerAvailable
+            return _isAccelerometerActive ?? super.isAccelerometerActive
         }
         set {
-            _isAccelerometerAvailable = newValue
+            _isAccelerometerActive = newValue
         }
     }
 
-    
-    
-        /*
-         *  accelerometerData
-         *
-         *  Discussion:
-         *			Returns the latest sample of accelerometer data, or nil if none is available.
-         */
-    
+    /*
+     *  accelerometerData
+     *
+     *  Discussion:
+     *			Returns the latest sample of accelerometer data, or nil if none is available.
+     */
     public var latestAccelerometerData: MockCMAccelerometerData?
     open override var accelerometerData: MockCMAccelerometerData? {
         get {
@@ -61,18 +57,17 @@ open class MockCMMotionManager: CMMotionManager {
         }
     }
     
-    
-        /*
-         *  startAccelerometerUpdates
-         *
-         *  Discussion:
-         *			Starts accelerometer updates with no handler. To receive the latest accelerometer data
-         *			when desired, examine the accelerometerData property.
-         */
+    /*
+     *  startAccelerometerUpdates
+     *
+     *  Discussion:
+     *			Starts accelerometer updates with no handler. To receive the latest accelerometer data
+     *			when desired, examine the accelerometerData property.
+     */
     public var startAccelerometerUpdatesCalled = false
     open override func startAccelerometerUpdates() {
         startAccelerometerUpdatesCalled = true
-        latestAccelerometerData = MockCMAccelerometerData.getRandomMockCMAccelerometerData()
+        accelerometerData = MockCMAccelerometerData.getRandomMockCMAccelerometerData()
     }
     
     //
@@ -99,15 +94,13 @@ open class MockCMMotionManager: CMMotionManager {
     //
     
     //    open var gyroUpdateInterval: TimeInterval has get and set no need to mock
-
     
-    
-        /*
-         *  gyroAvailable
-         *
-         *  Discussion:
-         *      Determines whether gyro is available.
-         */
+    /*
+     *  gyroAvailable
+     *
+     *  Discussion:
+     *      Determines whether gyro is available.
+     */
     public var _isGyroAvailable: Bool?
     open override var isGyroAvailable: Bool {
         get {
@@ -118,13 +111,12 @@ open class MockCMMotionManager: CMMotionManager {
         }
     }
     
-    
-        /*
-         *  gyroActive
-         *
-         *  Discussion:
-         *      Determines whether the CMMotionManager is currently providing gyro updates.
-         */
+    /*
+     *  gyroActive
+     *
+     *  Discussion:
+     *      Determines whether the CMMotionManager is currently providing gyro updates.
+     */
     public var _isGyroActive: Bool?
     open override var isGyroActive: Bool {
         get {
@@ -135,24 +127,34 @@ open class MockCMMotionManager: CMMotionManager {
         }
     }
     
-    //
-    //    /*
-    //     *  gyroData
-    //     *
-    //     *  Discussion:
-    //     *		Returns the latest sample of gyro data, or nil if none is available.
-    //     */
-    //    open var gyroData: CMGyroData? { get }
-    //
-    //
-    //    /*
-    //     *  startGyroUpdates
-    //     *
-    //     *  Discussion:
-    //     *			Starts gyro updates with no handler. To receive the latest gyro data
-    //     *			when desired, examine the gyroData property.
-    //     */
-    //    open func startGyroUpdates()
+    /*
+     *  gyroData
+     *
+     *  Discussion:
+     *		Returns the latest sample of gyro data, or nil if none is available.
+     */
+    public var latestGyroData: MockCMGyroData?
+    open override var gyroData: MockCMGyroData? {
+        get {
+            return latestGyroData
+        }
+        set {
+            latestGyroData = newValue
+        }
+    }
+    
+    /*
+     *  startGyroUpdates
+     *
+     *  Discussion:
+     *			Starts gyro updates with no handler. To receive the latest gyro data
+     *			when desired, examine the gyroData property.
+     */
+    public var isStartGyroUpdatesCalled = false
+    open override func startGyroUpdates() {
+        isStartGyroUpdatesCalled = true
+        gyroData = MockCMGyroData.getRandomMockCMGyroData()
+    }
     //
     //
     //    /*
@@ -176,63 +178,88 @@ open class MockCMMotionManager: CMMotionManager {
     //    open func stopGyroUpdates()
     //
     //
-    //    /*
-    //     *  magnetometerUpdateInterval
-    //     *
-    //     *  Discussion:
-    //     *      The interval at which to deliver magnetometer data to the specified
-    //     *			handler once startMagnetometerUpdatesToQueue:withHandler: is called.
-    //     *			The units are in seconds. The value of this property is capped to
-    //     *			certain minimum and maximum values. The maximum value is determined by
-    //     *			the maximum frequency supported by the hardware. If sensitive to the
-    //     *			interval of magnetometer data, an application should always check the
-    //     *			timestamps on the delivered CMMagnetometerData instances to determine the
-    //     *			true update interval.
-    //     */
-    //    @available(iOS 5.0, *)
-    //    open var magnetometerUpdateInterval: TimeInterval
-    //
-    //
-    //    /*
-    //     *  magnetometerAvailable
-    //     *
-    //     *  Discussion:
-    //     *      Determines whether magetometer is available.
-    //     */
-    //    @available(iOS 5.0, *)
-    //    open var isMagnetometerAvailable: Bool { get }
-    //
-    //
-    //    /*
-    //     *  magnetometerActive
-    //     *
-    //     *  Discussion:
-    //     *      Determines whether the CMMotionManager is currently providing magnetometer updates.
-    //     */
-    //    @available(iOS 5.0, *)
-    //    open var isMagnetometerActive: Bool { get }
-    //
-    //
-    //    /*
-    //     *  magnetometerData
-    //     *
-    //     *  Discussion:
-    //     *      Returns the latest sample of magnetometer data, or nil if none is available.
-    //     */
-    //    @available(iOS 5.0, *)
-    //    open var magnetometerData: CMMagnetometerData? { get }
-    //
-    //
-    //    /*
-    //     *  startMagnetometerUpdates
-    //     *
-    //     *  Discussion:
-    //     *      Starts magnetometer updates with no handler. To receive the latest magnetometer data
-    //     *          when desired, examine the magnetometerData property.
-    //     */
-    //    @available(iOS 5.0, *)
-    //    open func startMagnetometerUpdates()
-    //
+    
+    /*
+     *  magnetometerUpdateInterval
+     *
+     *  Discussion:
+     *      The interval at which to deliver magnetometer data to the specified
+     *			handler once startMagnetometerUpdatesToQueue:withHandler: is called.
+     *			The units are in seconds. The value of this property is capped to
+     *			certain minimum and maximum values. The maximum value is determined by
+     *			the maximum frequency supported by the hardware. If sensitive to the
+     *			interval of magnetometer data, an application should always check the
+     *			timestamps on the delivered CMMagnetometerData instances to determine the
+     *			true update interval.
+     */
+//    open var magnetometerUpdateInterval: TimeInterval NO NEED TO MOCK
+    
+    
+    
+    
+    /*
+     *  magnetometerAvailable
+     *
+     *  Discussion:
+     *      Determines whether magetometer is available.
+     */
+    public var _isMagnetometerAvailable = false
+    open override var isMagnetometerAvailable: Bool {
+        get {
+            return _isMagnetometerAvailable
+        }
+        set {
+            _isMagnetometerAvailable = newValue
+        }
+    }
+    
+    
+    
+    /*
+     *  magnetometerActive
+     *
+     *  Discussion:
+     *      Determines whether the CMMotionManager is currently providing magnetometer updates.
+     */
+    public var _isMagnetometerActive = false
+    open override var isMagnetometerActive: Bool {
+        get {
+            return _isMagnetometerActive
+        }
+        set {
+            _isMagnetometerActive = newValue
+        }
+    }
+    
+    /*
+     *  magnetometerData
+     *
+     *  Discussion:
+     *      Returns the latest sample of magnetometer data, or nil if none is available.
+     */
+    public var latestMagnetometerData: MockCMMagnetometerData?
+    open override var magnetometerData: MockCMMagnetometerData? {
+        get {
+            return latestMagnetometerData
+        }
+        set {
+            latestMagnetometerData = newValue
+        }
+    }
+
+    /*
+     *  startMagnetometerUpdates
+     *
+     *  Discussion:
+     *      Starts magnetometer updates with no handler. To receive the latest magnetometer data
+     *          when desired, examine the magnetometerData property.
+     */
+    public var isStartMagnetometerUpdatesCalled = false
+    open override func startMagnetometerUpdates() {
+        isStartMagnetometerUpdatesCalled = true
+        magnetometerData = MockCMMagnetometerData.getRandomMockCMMagnetometerData()
+    }
+
     //
     //    /*
     //     *  startMagnetometerUpdatesToQueue:withHandler:
@@ -267,7 +294,7 @@ open class MockCMMotionManager: CMMotionManager {
     //     *			timestamps on the delivered CMDeviceMotion instances to determine the
     //     *			true update interval.
     //     */
-    //    open var deviceMotionUpdateInterval: TimeInterval
+    //    open var deviceMotionUpdateInterval: TimeInterval NO NEED TO MOCK
     //
     //
     //    /*

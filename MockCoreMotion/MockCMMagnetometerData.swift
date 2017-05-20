@@ -51,4 +51,8 @@ open class MockCMMagnetometerData: CMMagnetometerData {
         coder.encode(magneticField, forKey: MockCMMagnetometerData.magneticFieldKey)
     }
     
+    // Random MockCMMagnetometerData generator
+    public static func getRandomMockCMMagnetometerData() -> MockCMMagnetometerData {
+        return MockCMMagnetometerData(magneticField: CMMagneticField(x: drand48(), y: drand48(), z: drand48()))
+    }
 }

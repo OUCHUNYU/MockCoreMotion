@@ -17,8 +17,7 @@ class MockCMDeviceMotionTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        let testAttitude = MockCMAttitude()
-        testAttitude.roll = 0.0
+        let testAttitude = MockCMAttitude(roll: 0, yaw: 0, pitch: 0, rotationMatrix: CMRotationMatrix(), quaternion: CMQuaternion())
         let testRotationRate = CMRotationRate(x: 0.0, y: 0.0, z: 0.0)
         let testGravity = CMAcceleration(x: 0.0, y: 0.0, z: 0.0)
         let testUserAcc = CMAcceleration(x: 0.0, y: 0.0, z: 0.0)
@@ -43,7 +42,7 @@ class MockCMDeviceMotionTests: XCTestCase {
         XCTAssertEqual(testMockCMDeviceMotion!.magneticField.field.x, 0.0)
         XCTAssertEqual(testMockCMDeviceMotion!.magneticField.accuracy, CMMagneticFieldCalibrationAccuracy.high)
         
-        let testAttitude = MockCMAttitude()
+        let testAttitude = MockCMAttitude(roll: 0, yaw: 0, pitch: 0, rotationMatrix: CMRotationMatrix(), quaternion: CMQuaternion())
         testAttitude.roll = 100.0
         let testRotationRate = CMRotationRate(x: 1.0, y: 1.0, z: 1.0)
         let testGravity = CMAcceleration(x: 2.0, y: 2.0, z: 2.0)

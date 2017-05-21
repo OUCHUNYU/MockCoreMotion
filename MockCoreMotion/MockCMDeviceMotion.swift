@@ -119,27 +119,12 @@ open class MockCMDeviceMotion: CMDeviceMotion {
     }
     
     // Random MockCMDeviceMotion generator
-//    public static func getRandomMockCMDeviceMotion() -> MockCMDeviceMotion {
-////        return MockCMDeviceMotion(attitude: <#T##CMAttitude#>, rotationRate: <#T##CMRotationRate#>, gravity: <#T##CMAcceleration#>, userAcceleration: <#T##CMAcceleration#>, magneticField: <#T##CMCalibratedMagneticField#>)
-////        return MockCMDeviceMotion
-//    }
-    
+    public static func getRandomMockCMDeviceMotion() -> MockCMDeviceMotion {
+        let attitude = MockCMAttitude.getRandomMockCMAttitude()
+        let rotationRate = CMRotationRate(x: drand48(), y: drand48(), z: drand48())
+        let gravity = CMAcceleration(x: drand48(), y: drand48(), z: drand48())
+        let userAcceleration = CMAcceleration(x: drand48(), y: drand48(), z: drand48())
+        let magneticField = CMCalibratedMagneticField(field: CMMagneticField(x: drand48(), y: drand48(), z: drand48()), accuracy: CMMagneticFieldCalibrationAccuracy.high)
+        return MockCMDeviceMotion(attitude: attitude, rotationRate: rotationRate, gravity: gravity, userAcceleration: userAcceleration, magneticField: magneticField)
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

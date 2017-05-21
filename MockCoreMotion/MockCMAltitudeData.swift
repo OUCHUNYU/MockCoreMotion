@@ -69,7 +69,7 @@ open class MockCMAltitudeData: CMAltitudeData {
         coder.encode(pressure, forKey: MockCMAltitudeData.pressureKey)
     }
     
-//     Random MockCMAltitudeData generator
+    // Random MockCMAltitudeData generator
     public static func getRandomMockCMAltitudeData() -> MockCMAltitudeData {
         return MockCMAltitudeData(relativeAltitude: NSNumber(value: arc4random_uniform(10000000)), pressure: NSNumber(value: arc4random_uniform(10000000)))
     }

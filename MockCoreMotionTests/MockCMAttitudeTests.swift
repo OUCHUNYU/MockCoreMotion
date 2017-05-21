@@ -17,7 +17,7 @@ class MockCMAttitudeTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        testMockCMAttitude = MockCMAttitude()
+        testMockCMAttitude = MockCMAttitude(roll: 0, yaw: 0, pitch: 0, rotationMatrix: CMRotationMatrix(), quaternion: CMQuaternion())
     }
     
     override func tearDown() {
@@ -54,7 +54,7 @@ class MockCMAttitudeTests: XCTestCase {
     func testMultiply() {
         XCTAssertFalse(testMockCMAttitude!.multiplyCalled, "multiply() should never be called.")
         XCTAssertNil(testMockCMAttitude!.multiplyAttitude)
-        let testAttitude = MockCMAttitude()
+        let testAttitude = MockCMAttitude(roll: 0, yaw: 0, pitch: 0, rotationMatrix: CMRotationMatrix(), quaternion: CMQuaternion())
         testMockCMAttitude?.multiply(byInverseOf: testAttitude)
         XCTAssertTrue(testMockCMAttitude!.multiplyCalled, "multiply() should be called.")
         XCTAssertEqual(testMockCMAttitude!.multiplyAttitude, testAttitude)

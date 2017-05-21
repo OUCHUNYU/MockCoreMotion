@@ -406,7 +406,7 @@ open class MockCMMotionManager: CMMotionManager {
     public var isStartDeviceMotionUpdatesCalled = false
     open override func startDeviceMotionUpdates() {
         isStartDeviceMotionUpdatesCalled = true
-//        deviceMotion = MockCMDeviceMotion.getRandomMockCMDeviceMotion()
+        deviceMotion = MockCMDeviceMotion.getRandomMockCMDeviceMotion()
     }
     
     //

@@ -203,10 +203,10 @@ open class MockCMMotionManager: CMMotionManager {
      *  Discussion:
      *      Determines whether magetometer is available.
      */
-    public var _isMagnetometerAvailable = false
+    public var _isMagnetometerAvailable: Bool?
     open override var isMagnetometerAvailable: Bool {
         get {
-            return _isMagnetometerAvailable
+            return _isMagnetometerAvailable ?? super.isMagnetometerAvailable
         }
         set {
             _isMagnetometerAvailable = newValue
@@ -221,10 +221,10 @@ open class MockCMMotionManager: CMMotionManager {
      *  Discussion:
      *      Determines whether the CMMotionManager is currently providing magnetometer updates.
      */
-    public var _isMagnetometerActive = false
+    public var _isMagnetometerActive: Bool?
     open override var isMagnetometerActive: Bool {
         get {
-            return _isMagnetometerActive
+            return _isMagnetometerActive ?? super.isMagnetometerActive
         }
         set {
             _isMagnetometerActive = newValue
@@ -296,68 +296,119 @@ open class MockCMMotionManager: CMMotionManager {
     //     */
     //    open var deviceMotionUpdateInterval: TimeInterval NO NEED TO MOCK
     //
-    //
-    //    /*
-    //     *  availableAttitudeReferenceFrames
-    //     *
-    //     *  Discussion:
-    //     *     Returns a bitmask specifying the available attitude reference frames on the device.
-    //     */
-    //    @available(iOS 5.0, *)
-    //    open class func availableAttitudeReferenceFrames() -> CMAttitudeReferenceFrame
-    //
-    //
-    //    /*
-    //     *  attitudeReferenceFrame
-    //     *
-    //     *  Discussion:
-    //     *		If device motion is active, returns the reference frame currently in-use.
-    //     *		If device motion is not active, returns the default attitude reference frame
-    //     *		for the device. If device motion is not available on the device, the value
-    //     *		is undefined.
-    //     *
-    //     */
-    //    @available(iOS 5.0, *)
-    //    open var attitudeReferenceFrame: CMAttitudeReferenceFrame { get }
-    //
-    //
-    //    /*
-    //     *  deviceMotionAvailable
-    //     *
-    //     *  Discussion:
-    //     *      Determines whether device motion is available using any available attitude reference frame.
-    //     */
-    //    open var isDeviceMotionAvailable: Bool { get }
-    //
-    //
-    //    /*
-    //     *  deviceMotionActive
-    //     *
-    //     *  Discussion:
-    //     *      Determines whether the CMMotionManager is currently providing device
-    //     *			motion updates.
-    //     */
-    //    open var isDeviceMotionActive: Bool { get }
-    //
-    //
-    //    /*
-    //     *  deviceMotion
-    //     *
-    //     *  Discussion:
-    //     *			Returns the latest sample of device motion data, or nil if none is available.
-    //     */
-    //    open var deviceMotion: CMDeviceMotion? { get }
-    //
-    //
-    //    /*
-    //     *  startDeviceMotionUpdates
-    //     *
-    //     *  Discussion:
-    //     *			Starts device motion updates with no handler. To receive the latest device motion data
-    //     *			when desired, examine the deviceMotion property. Uses the default reference frame for
-    //     *			the device. Examine CMMotionManager's attitudeReferenceFrame to determine this.
-    //     */
-    //    open func startDeviceMotionUpdates()
+
+    /*
+     *  availableAttitudeReferenceFrames
+     *
+     *  Discussion:
+     *     Returns a bitmask specifying the available attitude reference frames on the device.
+     *
+     *  CMAttitudeReferenceFrame.xArbitraryZVertical.rawValue == 1
+     *  CMAttitudeReferenceFrame.xArbitraryCorrectedZVertical.rawValue == 2
+     *  CMAttitudeReferenceFrame.xMagneticNorthZVertical.rawValue == 4
+     *  CMAttitudeReferenceFrame.xTrueNorthZVertical.rawValue == 8
+     */
+    public static var isAvailableAttitudeReferenceFramesCalled = false
+    public static var _availableAttitudeReferenceFrames = CMAttitudeReferenceFrame(rawValue: 1)
+    open override static func availableAttitudeReferenceFrames() -> CMAttitudeReferenceFrame {
+        isAvailableAttitudeReferenceFramesCalled = true
+        return _availableAttitudeReferenceFrames
+    }
+    
+    /*
+     *  attitudeReferenceFrame
+     *
+     *  Discussion:
+     *		If device motion is active, returns the reference frame currently in-use.
+     *		If device motion is not active, returns the default attitude reference frame
+     *		for the device. If device motion is not available on the device, the value
+     *		is undefined.
+     *
+     */
+    public var currentAttitudeReferenceFrame = CMAttitudeReferenceFrame(rawValue: 2)
+    public var defaultAttitudeReferenceFrame = CMAttitudeReferenceFrame(rawValue: 1)
+    open override var attitudeReferenceFrame: CMAttitudeReferenceFrame {
+        get {
+            if isDeviceMotionActive {
+                return currentAttitudeReferenceFrame
+            }
+            if isDeviceMotionAvailable {
+                return defaultAttitudeReferenceFrame
+            }
+            return CMAttitudeReferenceFrame(rawValue: 10)
+        }
+        set {
+            if isDeviceMotionActive {
+                currentAttitudeReferenceFrame = newValue
+            } else if !isDeviceMotionActive && isDeviceMotionAvailable {
+                defaultAttitudeReferenceFrame = newValue
+            }
+        }
+    }
+    
+    /*
+     *  deviceMotionAvailable
+     *
+     *  Discussion:
+     *      Determines whether device motion is available using any available attitude reference frame.
+     */
+    public var _isDeviceMotionAvailable: Bool?
+    open override var isDeviceMotionAvailable: Bool {
+        get {
+            return _isDeviceMotionAvailable ?? super.isDeviceMotionAvailable
+        }
+        set {
+            _isDeviceMotionAvailable = newValue
+        }
+    }
+    
+    /*
+     *  deviceMotionActive
+     *
+     *  Discussion:
+     *      Determines whether the CMMotionManager is currently providing device
+     *			motion updates.
+     */
+    public var _isDeviceMotionActive: Bool?
+    open override var isDeviceMotionActive: Bool {
+        get {
+            return _isDeviceMotionActive ?? super.isDeviceMotionActive
+        }
+        set {
+            _isDeviceMotionActive = newValue
+        }
+    }
+    
+    /*
+     *  deviceMotion
+     *
+     *  Discussion:
+     *			Returns the latest sample of device motion data, or nil if none is available.
+     */
+    public var latestDeviceMotion: MockCMDeviceMotion?
+    open override var deviceMotion: MockCMDeviceMotion? {
+        get {
+            return latestDeviceMotion
+        }
+        set {
+            latestDeviceMotion = newValue
+        }
+    }
+    
+    /*
+     *  startDeviceMotionUpdates
+     *
+     *  Discussion:
+     *			Starts device motion updates with no handler. To receive the latest device motion data
+     *			when desired, examine the deviceMotion property. Uses the default reference frame for
+     *			the device. Examine CMMotionManager's attitudeReferenceFrame to determine this.
+     */
+    public var isStartDeviceMotionUpdatesCalled = false
+    open override func startDeviceMotionUpdates() {
+        isStartDeviceMotionUpdatesCalled = true
+//        deviceMotion = MockCMDeviceMotion.getRandomMockCMDeviceMotion()
+    }
+    
     //
     //
     //    /*

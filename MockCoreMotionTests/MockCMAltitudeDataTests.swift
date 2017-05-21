@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CoreMotion
 @testable import MockCoreMotion
 
 class MockCMAltitudeDataTests: XCTestCase {
@@ -16,7 +17,7 @@ class MockCMAltitudeDataTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        testMockCMAltitudeData = MockCMAltitudeData()
+        testMockCMAltitudeData = MockCMAltitudeData(relativeAltitude: 0, pressure: 101325.00)
     }
     
     override func tearDown() {
